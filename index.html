@@ -384,6 +384,124 @@
     .stat { padding:1rem 1.5rem; }
     section { padding: 3rem 1.2rem; }
   }
+
+  /* ── CONTAINER SCROLL ANIMATION ── */
+  .scroll-scene {
+    height: 80rem;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    position: relative;
+    padding: 2rem 1rem;
+    background: linear-gradient(180deg, #FFF8EE 0%, #FFE9C4 60%, #FFF3DC 100%);
+    border-bottom: var(--outline);
+  }
+  .scroll-scene-inner {
+    position: sticky;
+    top: 60px;
+    width: 100%;
+    max-width: 960px;
+    perspective: 1000px;
+    padding-top: 2rem;
+  }
+  .scroll-title {
+    text-align: center;
+    margin-bottom: 2rem;
+    will-change: transform;
+  }
+  .scroll-card {
+    max-width: 900px;
+    margin: -3rem auto 0;
+    height: 34rem;
+    border: 4px solid #6C6C6C;
+    border-radius: 30px;
+    background: #222;
+    padding: 8px;
+    box-shadow: 0 0 #0000004d, 0 9px 20px #0000004a, 0 37px 37px #00000042, 0 84px 50px #00000026;
+    will-change: transform;
+    transform-origin: center top;
+  }
+  .scroll-card-inner {
+    width: 100%; height: 100%;
+    border-radius: 22px;
+    overflow: hidden;
+    background: #f4f4f4;
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .scard-panel {
+    padding: 2.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+  }
+  .scard-panel.left { background: #FFF8EE; border-right: 3px dashed #C8732A; }
+  .scard-panel.right {
+    background: var(--tea-dark);
+    align-items: center;
+    text-align: center;
+    gap: 1.4rem;
+  }
+  .scard-panel h2 { font-family:'Fredoka One',cursive; font-size:2rem; color:var(--tea-dark); line-height:1.15; }
+  .scard-panel h2 span { color:var(--tea); }
+  .scard-feature {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #fff;
+    border: 2px solid #2C1A0E;
+    border-radius: 14px;
+    padding: 10px 14px;
+    box-shadow: 3px 3px 0 #2C1A0E;
+    font-weight: 700;
+    font-size: .95rem;
+    color: #5A3D25;
+  }
+  .scard-feature .fi { font-size: 1.4rem; }
+  .scard-rating {
+    font-family: 'Fredoka One', cursive;
+    font-size: 3.5rem;
+    color: var(--yellow);
+    text-shadow: 3px 3px 0 #2C1A0E;
+    line-height: 1;
+  }
+  .scard-stars { font-size: 1.6rem; letter-spacing: 4px; }
+  .scard-caption { color: var(--tea-light); font-weight: 700; font-size: .95rem; }
+  .scard-badge {
+    background: var(--yellow);
+    color: #2C1A0E;
+    font-family: 'Fredoka One', cursive;
+    font-size: 1rem;
+    padding: 8px 20px;
+    border-radius: 30px;
+    border: 2px solid #2C1A0E;
+    box-shadow: 3px 3px 0 #2C1A0E;
+  }
+  @media(max-width:680px){
+    .scroll-scene { height: 60rem; }
+    .scroll-card { height: 22rem; }
+    .scroll-card-inner { grid-template-columns: 1fr; }
+    .scard-panel.right { display: none; }
+    .scard-panel h2 { font-size: 1.4rem; }
+    .scard-feature { font-size:.82rem; }
+  }
+
+  /* ── SCROLL REVEAL for all sections ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity .7s ease, transform .7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal-delay-1 { transition-delay: .1s; }
+  .reveal-delay-2 { transition-delay: .2s; }
+  .reveal-delay-3 { transition-delay: .3s; }
+  .reveal-delay-4 { transition-delay: .4s; }
 </style>
 </head>
 <body>
@@ -486,42 +604,75 @@
   </div>
 </div>
 
+<!-- CONTAINER SCROLL ANIMATION SECTION -->
+<div class="scroll-scene">
+  <div class="scroll-scene-inner">
+    <div class="scroll-title" id="scroll-title">
+      <p style="font-family:'Fredoka One',cursive; font-size:1rem; color:var(--tea); letter-spacing:2px; text-transform:uppercase; margin-bottom:.5rem;">✨ Why choose us?</p>
+      <h2 style="font-family:'Fredoka One',cursive; font-size:clamp(2rem,4vw,3.2rem); color:var(--tea-dark); text-shadow:2px 2px 0 #2C1A0E, 3px 3px 0 var(--yellow);">
+        More Than Just Tea —<br>It's an <span style="color:var(--tea)">Experience</span>
+      </h2>
+    </div>
+    <div class="scroll-card" id="scroll-card">
+      <div class="scroll-card-inner">
+        <div class="scard-panel left">
+          <h2>Hosur's <span>Cosiest</span><br>Tea Corner ☕</h2>
+          <div class="scard-feature"><span class="fi">🫚</span> Fresh ingredients every morning</div>
+          <div class="scard-feature"><span class="fi">🧹</span> Clean & welcoming atmosphere</div>
+          <div class="scard-feature"><span class="fi">😊</span> Friendly, efficient staff</div>
+          <div class="scard-feature"><span class="fi">🌿</span> Healthy snack options available</div>
+          <div class="scard-feature"><span class="fi">💸</span> Decent prices, top-notch quality</div>
+        </div>
+        <div class="scard-panel right">
+          <div class="scard-rating">4.7</div>
+          <div class="scard-stars">⭐⭐⭐⭐⭐</div>
+          <div class="scard-caption">from 155 Google reviews</div>
+          <div class="scard-badge">🏆 Hosur's Favourite</div>
+          <div style="color:var(--tea-light);font-size:.85rem;font-weight:600;line-height:1.6;padding:0 .5rem;">
+            "Authentic, local tea shop vibe — clean, welcoming, and a great spot to relax."
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- MENU -->
 <section id="menu">
-  <div class="section-title">Our Yummy Menu 🍵</div>
-  <div class="section-sub">Fresh, flavorful & made with love every single cup!</div>
+  <div class="section-title reveal">Our Yummy Menu 🍵</div>
+  <div class="section-sub reveal reveal-delay-1">Fresh, flavorful & made with love every single cup!</div>
   <div class="menu-grid">
-    <div class="menu-card">
+    <div class="menu-card reveal reveal-delay-1">
       <span class="icon">🍵</span>
       <h3>Ginger Lemon Tea</h3>
       <p>Our star drink — bold ginger with zesty lemon, a real crowd favourite!</p>
       <span class="tag">⭐ Best Seller</span>
     </div>
-    <div class="menu-card">
+    <div class="menu-card reveal reveal-delay-2">
       <span class="icon">☕</span>
       <h3>Special Coffee</h3>
       <p>Strong, aromatic South Indian filter coffee brewed to perfection.</p>
       <span class="tag">☕ Popular</span>
     </div>
-    <div class="menu-card">
+    <div class="menu-card reveal reveal-delay-3">
       <span class="icon">🫖</span>
       <h3>Classic Chai</h3>
       <p>Rich, creamy masala chai that'll warm you right up. Well-maintained quality.</p>
       <span class="tag">🧡 Classic</span>
     </div>
-    <div class="menu-card">
+    <div class="menu-card reveal reveal-delay-1">
       <span class="icon">🥐</span>
       <h3>Soft Buns</h3>
       <p>Freshly baked, pillowy soft buns — the perfect tea-time companion.</p>
       <span class="tag">🥖 Fresh Daily</span>
     </div>
-    <div class="menu-card">
+    <div class="menu-card reveal reveal-delay-2">
       <span class="icon">🫓</span>
       <h3>Podi Idlis</h3>
       <p>Fluffy mini idlis tossed in spicy podi — a healthy morning snack!</p>
       <span class="tag">🌿 Healthy</span>
     </div>
-    <div class="menu-card">
+    <div class="menu-card reveal reveal-delay-3">
       <span class="icon">🍽️</span>
       <h3>Daily Snacks</h3>
       <p>Ask us about today's fresh snacks. Top-notch taste, decent prices!</p>
@@ -532,10 +683,10 @@
 
 <!-- REVIEWS -->
 <section id="reviews">
-  <div class="section-title">What People Say 💬</div>
-  <div class="section-sub">Real reviews from our amazing guests on Google Maps</div>
+  <div class="section-title reveal">What People Say 💬</div>
+  <div class="section-sub reveal reveal-delay-1">Real reviews from our amazing guests on Google Maps</div>
   <div class="reviews-grid">
-    <div class="review-card">
+    <div class="review-card reveal reveal-delay-1">
       <div class="quote-mark">"</div>
       <div class="stars">★★★★★</div>
       <p class="review-text">Well maintained shop and decent cost for the quality they provide. Had a very nice chai!</p>
@@ -547,7 +698,7 @@
         </div>
       </div>
     </div>
-    <div class="review-card">
+    <div class="review-card reveal reveal-delay-2">
       <div class="quote-mark">"</div>
       <div class="stars">★★★★★</div>
       <p class="review-text">Top notch snacks and beverages. Liked it so much — already planning my next visit!</p>
@@ -559,7 +710,7 @@
         </div>
       </div>
     </div>
-    <div class="review-card">
+    <div class="review-card reveal reveal-delay-3">
       <div class="quote-mark">"</div>
       <div class="stars">★★★★★</div>
       <p class="review-text">It's our go-to spot for coffee or tea to start a relaxed morning. Ambience is great. Healthy options available too!</p>
@@ -576,10 +727,10 @@
 
 <!-- INFO -->
 <section id="info">
-  <div class="section-title">Find Us Here! 📍</div>
-  <div class="section-sub">We're open every day — drop by anytime!</div>
+  <div class="section-title reveal">Find Us Here! 📍</div>
+  <div class="section-sub reveal reveal-delay-1">We're open every day — drop by anytime!</div>
   <div class="info-wrap">
-    <div class="info-card">
+    <div class="info-card reveal reveal-delay-2">
       <h3>📋 Shop Info</h3>
       <div class="info-row">
         <span class="info-icon">📍</span>
@@ -646,12 +797,66 @@
 </a>
 
 <script>
+  /* ── Smooth nav ── */
   document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', e => {
       e.preventDefault();
       document.querySelector(a.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' });
     });
   });
+
+  /* ── Container Scroll Animation ── */
+  (function() {
+    const scene   = document.querySelector('.scroll-scene');
+    const card    = document.getElementById('scroll-card');
+    const title   = document.getElementById('scroll-title');
+    const isMobile = () => window.innerWidth <= 768;
+
+    function lerp(a, b, t) { return a + (b - a) * t; }
+
+    function onScroll() {
+      if (!scene || !card) return;
+
+      const rect    = scene.getBoundingClientRect();
+      const winH    = window.innerHeight;
+      const total   = scene.offsetHeight;
+
+      // progress: 0 when scene top hits viewport top → 1 when scene bottom hits viewport bottom
+      const raw = -rect.top / (total - winH);
+      const progress = Math.min(1, Math.max(0, raw));
+
+      // Replicate framer-motion useTransform([0,1], [20,0]) for rotateX
+      const rotateX  = lerp(20, 0, progress);
+
+      // Scale: desktop [1.05 → 1], mobile [0.7 → 0.9]
+      const scaleFrom = isMobile() ? 0.7 : 1.05;
+      const scaleTo   = isMobile() ? 0.9 : 1.0;
+      const scale     = lerp(scaleFrom, scaleTo, progress);
+
+      // Title translateY: [0 → -100px]
+      const titleY = lerp(0, -100, progress);
+
+      card.style.transform  = `rotateX(${rotateX}deg) scale(${scale})`;
+      title.style.transform = `translateY(${titleY}px)`;
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll(); // init
+  })();
+
+  /* ── Scroll Reveal for sections ── */
+  (function() {
+    const revealEls = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    revealEls.forEach(el => observer.observe(el));
+  })();
 </script>
 </body>
 </html>

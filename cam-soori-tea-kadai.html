@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cam Soori Tea Kadai ☕</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --tea: #C8732A;
+    --tea-light: #F5D5A8;
+    --tea-dark: #7A4018;
+    --cream: #FFF8EE;
+    --green: #5A8A3C;
+    --green-light: #D4EDBA;
+    --yellow: #F7C948;
+    --red: #E8453C;
+    --outline: 3px solid #2C1A0E;
+    --shadow: 5px 5px 0px #2C1A0E;
+    --shadow-sm: 3px 3px 0px #2C1A0E;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background-color: var(--cream);
+    font-family: 'Nunito', sans-serif;
+    overflow-x: hidden;
+    background-image: radial-gradient(circle at 20px 20px, #e8d5b7 1px, transparent 1px),
+                      radial-gradient(circle at 60px 60px, #e8d5b7 1px, transparent 1px);
+    background-size: 80px 80px;
+  }
+
+  /* ── NAVBAR ── */
+  nav {
+    background: var(--tea);
+    border-bottom: var(--outline);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 4px 0 #2C1A0E;
+  }
+  .nav-logo {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.6rem;
+    color: var(--cream);
+    text-shadow: 2px 2px 0 #2C1A0E;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 1rem 0;
+  }
+  .nav-logo .cup { font-size: 1.8rem; animation: steam 2s ease-in-out infinite; }
+  @keyframes steam {
+    0%,100% { transform: translateY(0) rotate(-5deg); }
+    50% { transform: translateY(-4px) rotate(5deg); }
+  }
+  .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+  .nav-links a {
+    color: var(--cream);
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 1rem;
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 2px solid transparent;
+    transition: all .2s;
+  }
+  .nav-links a:hover {
+    background: var(--cream);
+    color: var(--tea-dark);
+    border-color: #2C1A0E;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(160deg, #FFF3DC 0%, #FFDFB0 100%);
+    border-bottom: var(--outline);
+    padding: 4rem 2rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4rem;
+    flex-wrap: wrap;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: rgba(200,115,42,.12);
+    top: -200px; right: -100px;
+    pointer-events: none;
+  }
+  .hero-text { max-width: 480px; z-index: 1; }
+  .badge-open {
+    display: inline-block;
+    background: var(--green);
+    color: #fff;
+    font-weight: 800;
+    font-size: .85rem;
+    padding: 5px 14px;
+    border-radius: 20px;
+    border: 2px solid #2C1A0E;
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 1rem;
+    animation: pulse 1.8s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.04)} }
+  .hero h1 {
+    font-family: 'Fredoka One', cursive;
+    font-size: clamp(2.4rem, 5vw, 3.8rem);
+    color: var(--tea-dark);
+    line-height: 1.1;
+    text-shadow: 3px 3px 0 #fff, 4px 4px 0 #2C1A0E;
+    margin-bottom: 1rem;
+  }
+  .hero h1 span { color: var(--tea); }
+  .hero-desc {
+    font-size: 1.1rem;
+    color: #6B4226;
+    line-height: 1.7;
+    margin-bottom: 1.8rem;
+  }
+  .btn-group { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    border-radius: 40px;
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.1rem;
+    text-decoration: none;
+    border: 3px solid #2C1A0E;
+    box-shadow: var(--shadow);
+    cursor: pointer;
+    transition: transform .15s, box-shadow .15s;
+  }
+  .btn:hover { transform: translate(-2px,-2px); box-shadow: 7px 7px 0 #2C1A0E; }
+  .btn:active { transform: translate(2px,2px); box-shadow: 2px 2px 0 #2C1A0E; }
+  .btn-primary { background: var(--tea); color: var(--cream); }
+  .btn-secondary { background: var(--yellow); color: #2C1A0E; }
+  .btn-outline { background: var(--cream); color: var(--tea-dark); }
+
+  /* cartoon tea cup illustration */
+  .hero-art { flex-shrink: 0; z-index: 1; }
+  .hero-art svg { width: 280px; height: auto; filter: drop-shadow(6px 8px 0 rgba(44,26,14,.25)); }
+
+  /* ── STATS BAR ── */
+  .stats-bar {
+    background: var(--tea-dark);
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    flex-wrap: wrap;
+    border-bottom: var(--outline);
+  }
+  .stat {
+    padding: 1.2rem 2.5rem;
+    text-align: center;
+    color: var(--cream);
+    border-right: 2px solid rgba(255,255,255,.2);
+  }
+  .stat:last-child { border-right: none; }
+  .stat .num {
+    font-family: 'Fredoka One', cursive;
+    font-size: 2rem;
+    color: var(--yellow);
+    display: block;
+  }
+  .stat .label { font-size: .85rem; opacity: .8; font-weight: 700; }
+
+  /* ── SECTION COMMON ── */
+  section { padding: 4rem 2rem; max-width: 1100px; margin: 0 auto; }
+  .section-title {
+    font-family: 'Fredoka One', cursive;
+    font-size: 2.4rem;
+    color: var(--tea-dark);
+    text-align: center;
+    margin-bottom: .4rem;
+    text-shadow: 2px 2px 0 #2C1A0E, 3px 3px 0 var(--yellow);
+  }
+  .section-sub {
+    text-align: center;
+    color: #8B5E3C;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 2.8rem;
+  }
+
+  /* ── MENU ── */
+  .menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+  }
+  .menu-card {
+    background: #fff;
+    border: 3px solid #2C1A0E;
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    padding: 1.4rem 1.2rem;
+    text-align: center;
+    transition: transform .2s, box-shadow .2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .menu-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 6px;
+    background: var(--tea);
+  }
+  .menu-card:hover { transform: translateY(-6px) rotate(-1deg); box-shadow: 8px 11px 0 #2C1A0E; }
+  .menu-card .icon { font-size: 3rem; margin-bottom: .6rem; display: block; }
+  .menu-card h3 { font-family: 'Fredoka One', cursive; font-size: 1.2rem; color: var(--tea-dark); margin-bottom: .3rem; }
+  .menu-card p { font-size: .9rem; color: #7A5230; line-height: 1.5; }
+  .menu-card .tag {
+    display: inline-block;
+    margin-top: .8rem;
+    background: var(--tea-light);
+    color: var(--tea-dark);
+    font-weight: 800;
+    font-size: .78rem;
+    padding: 3px 10px;
+    border-radius: 20px;
+    border: 2px solid #C8732A;
+  }
+
+  /* ── REVIEWS ── */
+  #reviews { background: none; }
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+  .review-card {
+    background: #fff;
+    border: 3px solid #2C1A0E;
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    padding: 1.4rem;
+    position: relative;
+  }
+  .review-card .quote-mark {
+    font-family: 'Fredoka One', cursive;
+    font-size: 4rem;
+    color: var(--tea-light);
+    position: absolute;
+    top: -10px; left: 16px;
+    line-height: 1;
+    pointer-events: none;
+  }
+  .stars { color: var(--yellow); font-size: 1.2rem; margin-bottom: .5rem; }
+  .review-text { font-size: .95rem; color: #5A3D25; line-height: 1.6; font-weight: 600; margin-bottom: 1rem; }
+  .reviewer { display: flex; align-items: center; gap: 10px; }
+  .avatar {
+    width: 42px; height: 42px; border-radius: 50%;
+    background: var(--tea); border: 2px solid #2C1A0E;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Fredoka One', cursive; color: #fff; font-size: 1.1rem;
+  }
+  .reviewer-name { font-weight: 800; color: var(--tea-dark); font-size: .95rem; }
+  .reviewer-sub { font-size: .78rem; color: #9E7050; }
+
+  /* ── INFO SECTION ── */
+  .info-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: start;
+  }
+  @media(max-width:680px){ .info-wrap{ grid-template-columns:1fr; } }
+  .info-card {
+    background: #fff;
+    border: 3px solid #2C1A0E;
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    padding: 1.8rem;
+  }
+  .info-card h3 {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.5rem;
+    color: var(--tea-dark);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .info-row { display: flex; align-items: flex-start; gap: 12px; padding: 10px 0; border-bottom: 2px dashed #F0D5B0; }
+  .info-row:last-child { border-bottom: none; }
+  .info-icon { font-size: 1.5rem; flex-shrink: 0; margin-top: 2px; }
+  .info-label { font-weight: 800; color: var(--tea-dark); font-size: .9rem; }
+  .info-value { color: #6B4226; font-size: .9rem; }
+  .hours-open { color: var(--green); font-weight: 800; }
+
+  /* ── MAP PLACEHOLDER ── */
+  .map-box {
+    background: var(--green-light);
+    border: 3px solid #2C1A0E;
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    position: relative;
+    min-height: 280px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 2rem;
+    text-align: center;
+  }
+  .map-pin { font-size: 3.5rem; animation: bounce 1.5s ease-in-out infinite; }
+  @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+  .map-box h3 { font-family:'Fredoka One',cursive; font-size:1.4rem; color:var(--tea-dark); }
+  .map-box p { color:#5A7A3C; font-weight:700; font-size:.95rem; line-height:1.5; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--tea-dark);
+    border-top: var(--outline);
+    color: var(--cream);
+    text-align: center;
+    padding: 2.5rem 2rem;
+  }
+  footer .footer-logo {
+    font-family: 'Fredoka One', cursive;
+    font-size: 2rem;
+    color: var(--yellow);
+    text-shadow: 2px 2px 0 #2C1A0E;
+    margin-bottom: .5rem;
+  }
+  footer p { font-size: .9rem; opacity: .75; margin-bottom: .3rem; }
+  footer .swiggy-link {
+    display: inline-block;
+    margin-top: 1rem;
+    background: var(--yellow);
+    color: #2C1A0E;
+    font-family: 'Fredoka One', cursive;
+    padding: 8px 22px;
+    border-radius: 30px;
+    border: 2px solid #2C1A0E;
+    box-shadow: var(--shadow-sm);
+    text-decoration: none;
+    font-size: 1rem;
+    transition: transform .15s;
+  }
+  footer .swiggy-link:hover { transform: translateY(-3px); }
+
+  /* ── FLOATING ORDER BTN ── */
+  .fab {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    background: var(--red);
+    color: #fff;
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.1rem;
+    padding: 14px 22px;
+    border-radius: 40px;
+    border: 3px solid #2C1A0E;
+    box-shadow: 5px 5px 0 #2C1A0E;
+    text-decoration: none;
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: transform .15s, box-shadow .15s;
+  }
+  .fab:hover { transform: translate(-2px,-3px); box-shadow: 8px 9px 0 #2C1A0E; }
+
+  /* mobile nav */
+  @media(max-width:640px){
+    .nav-links { display: none; }
+    .hero { gap:2rem; padding:3rem 1.5rem 2rem; }
+    .hero-art svg { width:200px; }
+    .stat { padding:1rem 1.5rem; }
+    section { padding: 3rem 1.2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <span class="cup">☕</span> Cam Soori Tea Kadai
+  </div>
+  <ul class="nav-links">
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#info">Find Us</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-text">
+    <span class="badge-open">🟢 Open Now · Closes 10:30 PM</span>
+    <h1>Hosur's Most<br><span>Beloved</span><br>Tea Spot! ☕</h1>
+    <p class="hero-desc">
+      Authentic chai, ginger lemon tea, special coffee & fresh snacks —
+      served with a big smile at TNHB Colony, Bagalur Hudco, Hosur.
+      Your go-to spot for a relaxed morning or evening!
+    </p>
+    <div class="btn-group">
+      <a href="https://www.swiggy.com/city/hosur/cam-soori-tea-kadai-hosur-city-hosur_city-rest1272389" class="btn btn-primary" target="_blank">🛵 Order on Swiggy</a>
+      <a href="tel:06382581961" class="btn btn-secondary">📞 Call Us</a>
+    </div>
+  </div>
+
+  <!-- Cartoon cup SVG -->
+  <div class="hero-art">
+    <svg viewBox="0 0 300 320" xmlns="http://www.w3.org/2000/svg">
+      <!-- steam lines -->
+      <path d="M105 60 Q100 40 108 22 Q114 6 108 -8" stroke="#C8732A" stroke-width="5" stroke-linecap="round" fill="none" opacity=".6">
+        <animate attributeName="opacity" values="0.6;0.2;0.6" dur="2s" repeatCount="indefinite"/>
+        <animate attributeName="d" values="M105 60 Q100 40 108 22 Q114 6 108 -8;M105 60 Q112 40 104 22 Q98 6 106 -8;M105 60 Q100 40 108 22 Q114 6 108 -8" dur="2s" repeatCount="indefinite"/>
+      </path>
+      <path d="M150 50 Q145 30 153 12 Q159 -4 153 -18" stroke="#C8732A" stroke-width="5" stroke-linecap="round" fill="none" opacity=".5">
+        <animate attributeName="opacity" values="0.5;0.15;0.5" dur="2.4s" repeatCount="indefinite"/>
+      </path>
+      <path d="M195 60 Q190 40 198 22 Q204 6 198 -8" stroke="#C8732A" stroke-width="5" stroke-linecap="round" fill="none" opacity=".6">
+        <animate attributeName="opacity" values="0.6;0.2;0.6" dur="1.8s" repeatCount="indefinite"/>
+      </path>
+
+      <!-- saucer -->
+      <ellipse cx="150" cy="270" rx="120" ry="22" fill="#7A4018" stroke="#2C1A0E" stroke-width="3"/>
+      <ellipse cx="150" cy="265" rx="110" ry="18" fill="#C8732A" stroke="#2C1A0E" stroke-width="3"/>
+
+      <!-- cup body -->
+      <path d="M70 100 Q60 220 80 250 Q110 280 150 280 Q190 280 220 250 Q240 220 230 100 Z" fill="#F5D5A8" stroke="#2C1A0E" stroke-width="4"/>
+      <!-- cup front panel -->
+      <path d="M85 110 Q78 215 95 242 Q115 268 150 268 Q185 268 205 242 Q222 215 215 110 Z" fill="#FFF8EE" stroke="none"/>
+
+      <!-- tea liquid -->
+      <path d="M86 160 Q83 215 96 240 Q116 265 150 265 Q184 265 204 240 Q217 215 214 160 Z" fill="#C8732A" stroke="none"/>
+      <!-- liquid surface shine -->
+      <ellipse cx="150" cy="162" rx="62" ry="10" fill="#E8973A" stroke="none"/>
+
+      <!-- cup rim -->
+      <ellipse cx="150" cy="100" rx="80" ry="16" fill="#F5D5A8" stroke="#2C1A0E" stroke-width="4"/>
+      <ellipse cx="150" cy="100" rx="70" ry="11" fill="#FFF8EE" stroke="#2C1A0E" stroke-width="2"/>
+
+      <!-- handle -->
+      <path d="M228 140 Q280 145 278 185 Q275 225 228 222" fill="none" stroke="#7A4018" stroke-width="16" stroke-linecap="round"/>
+      <path d="M228 140 Q278 145 276 185 Q273 220 228 222" fill="none" stroke="#C8732A" stroke-width="9" stroke-linecap="round"/>
+
+      <!-- cute face -->
+      <circle cx="122" cy="195" r="9" fill="#2C1A0E"/>
+      <circle cx="178" cy="195" r="9" fill="#2C1A0E"/>
+      <circle cx="125" cy="192" r="4" fill="#fff"/>
+      <circle cx="181" cy="192" r="4" fill="#fff"/>
+      <path d="M133 218 Q150 235 167 218" stroke="#2C1A0E" stroke-width="4" stroke-linecap="round" fill="none"/>
+
+      <!-- cup label / band -->
+      <path d="M76 140 Q150 135 224 140 L220 155 Q150 150 80 155 Z" fill="#C8732A" stroke="none" opacity=".5"/>
+    </svg>
+  </div>
+</div>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat">
+    <span class="num">⭐ 4.7</span>
+    <span class="label">Google Rating</span>
+  </div>
+  <div class="stat">
+    <span class="num">155+</span>
+    <span class="label">Happy Reviews</span>
+  </div>
+  <div class="stat">
+    <span class="num">Since ♾</span>
+    <span class="label">Hosur's Fave</span>
+  </div>
+  <div class="stat">
+    <span class="num">6AM–10:30PM</span>
+    <span class="label">Open Every Day</span>
+  </div>
+</div>
+
+<!-- MENU -->
+<section id="menu">
+  <div class="section-title">Our Yummy Menu 🍵</div>
+  <div class="section-sub">Fresh, flavorful & made with love every single cup!</div>
+  <div class="menu-grid">
+    <div class="menu-card">
+      <span class="icon">🍵</span>
+      <h3>Ginger Lemon Tea</h3>
+      <p>Our star drink — bold ginger with zesty lemon, a real crowd favourite!</p>
+      <span class="tag">⭐ Best Seller</span>
+    </div>
+    <div class="menu-card">
+      <span class="icon">☕</span>
+      <h3>Special Coffee</h3>
+      <p>Strong, aromatic South Indian filter coffee brewed to perfection.</p>
+      <span class="tag">☕ Popular</span>
+    </div>
+    <div class="menu-card">
+      <span class="icon">🫖</span>
+      <h3>Classic Chai</h3>
+      <p>Rich, creamy masala chai that'll warm you right up. Well-maintained quality.</p>
+      <span class="tag">🧡 Classic</span>
+    </div>
+    <div class="menu-card">
+      <span class="icon">🥐</span>
+      <h3>Soft Buns</h3>
+      <p>Freshly baked, pillowy soft buns — the perfect tea-time companion.</p>
+      <span class="tag">🥖 Fresh Daily</span>
+    </div>
+    <div class="menu-card">
+      <span class="icon">🫓</span>
+      <h3>Podi Idlis</h3>
+      <p>Fluffy mini idlis tossed in spicy podi — a healthy morning snack!</p>
+      <span class="tag">🌿 Healthy</span>
+    </div>
+    <div class="menu-card">
+      <span class="icon">🍽️</span>
+      <h3>Daily Snacks</h3>
+      <p>Ask us about today's fresh snacks. Top-notch taste, decent prices!</p>
+      <span class="tag">✨ Ask Today</span>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews">
+  <div class="section-title">What People Say 💬</div>
+  <div class="section-sub">Real reviews from our amazing guests on Google Maps</div>
+  <div class="reviews-grid">
+    <div class="review-card">
+      <div class="quote-mark">"</div>
+      <div class="stars">★★★★★</div>
+      <p class="review-text">Well maintained shop and decent cost for the quality they provide. Had a very nice chai!</p>
+      <div class="reviewer">
+        <div class="avatar">R</div>
+        <div>
+          <div class="reviewer-name">Regular Customer</div>
+          <div class="reviewer-sub">Google Review · 5 stars</div>
+        </div>
+      </div>
+    </div>
+    <div class="review-card">
+      <div class="quote-mark">"</div>
+      <div class="stars">★★★★★</div>
+      <p class="review-text">Top notch snacks and beverages. Liked it so much — already planning my next visit!</p>
+      <div class="reviewer">
+        <div class="avatar">V</div>
+        <div>
+          <div class="reviewer-name">Verified Guest</div>
+          <div class="reviewer-sub">Google Review · 5 stars</div>
+        </div>
+      </div>
+    </div>
+    <div class="review-card">
+      <div class="quote-mark">"</div>
+      <div class="stars">★★★★★</div>
+      <p class="review-text">It's our go-to spot for coffee or tea to start a relaxed morning. Ambience is great. Healthy options available too!</p>
+      <div class="reviewer">
+        <div class="avatar">A</div>
+        <div>
+          <div class="reviewer-name">Area Local</div>
+          <div class="reviewer-sub">Google Review · 5 stars</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INFO -->
+<section id="info">
+  <div class="section-title">Find Us Here! 📍</div>
+  <div class="section-sub">We're open every day — drop by anytime!</div>
+  <div class="info-wrap">
+    <div class="info-card">
+      <h3>📋 Shop Info</h3>
+      <div class="info-row">
+        <span class="info-icon">📍</span>
+        <div>
+          <div class="info-label">Address</div>
+          <div class="info-value">TNHB Colony, Bagalur Hudco, Hosur, Tamil Nadu 635109</div>
+        </div>
+      </div>
+      <div class="info-row">
+        <span class="info-icon">📞</span>
+        <div>
+          <div class="info-label">Phone</div>
+          <div class="info-value"><a href="tel:06382581961" style="color:var(--tea);font-weight:800;text-decoration:none;">063825 81961</a></div>
+        </div>
+      </div>
+      <div class="info-row">
+        <span class="info-icon">🕐</span>
+        <div>
+          <div class="info-label">Hours</div>
+          <div class="info-value"><span class="hours-open">Open Now</span> · Closes 10:30 PM</div>
+        </div>
+      </div>
+      <div class="info-row">
+        <span class="info-icon">⭐</span>
+        <div>
+          <div class="info-label">Google Rating</div>
+          <div class="info-value">4.7 / 5 from 155 reviews</div>
+        </div>
+      </div>
+      <div class="info-row">
+        <span class="info-icon">🛵</span>
+        <div>
+          <div class="info-label">Delivery</div>
+          <div class="info-value"><a href="https://www.swiggy.com/city/hosur/cam-soori-tea-kadai-hosur-city-hosur_city-rest1272389" target="_blank" style="color:var(--tea);font-weight:800;text-decoration:none;">Order on Swiggy →</a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="map-box">
+      <div class="map-pin">📍</div>
+      <h3>Cam Soori Tea Kadai</h3>
+      <p>TNHB Colony, Bagalur Hudco<br>Hosur, Tamil Nadu 635109</p>
+      <a href="https://maps.google.com/?q=Cam+Soori+Tea+Kadai+Hosur" target="_blank" class="btn btn-primary" style="margin-top:.5rem; text-decoration:none;">
+        🗺️ Open in Google Maps
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">☕ Cam Soori Tea Kadai</div>
+  <p>Main Branch · TNHB Colony, Bagalur Hudco, Hosur, Tamil Nadu 635109</p>
+  <p>📞 063825 81961 &nbsp;|&nbsp; Open till 10:30 PM</p>
+  <a href="https://www.swiggy.com/city/hosur/cam-soori-tea-kadai-hosur-city-hosur_city-rest1272389" class="swiggy-link" target="_blank">
+    🛵 Order on Swiggy Now
+  </a>
+  <p style="margin-top:1.5rem; font-size:.8rem; opacity:.5;">© 2025 Cam Soori Tea Kadai · Made with ☕ & ❤️ in Hosur</p>
+</footer>
+
+<!-- FAB -->
+<a href="tel:06382581961" class="fab">
+  📞 Call to Order
+</a>
+
+<script>
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      document.querySelector(a.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+</script>
+</body>
+</html>
